@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Image</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    
+    <section>
+        <h1>Filter Image</h1>
+        <ul>
+            <li class="active">All Menu</li>
+            <li>green</li>
+            <li>yellow</li>
+            <li>black</li>
+        </ul>
+
+        <div class="product">
+            <img src="./images/owl-fashion-1.jpg" data-filter="green">
+            <img src="./images/owl-fashion-2.jpg" data-filter="yellow">
+            <img src="./images/owl-fashion-3.jpg" data-filter="black">
+        </div>
+    </section>
+
+    <script>
+        const liItem = document.querySelectorAll('ul li');
+        const imgItem = document.querySelectorAll('.product img');
+
+        liItem.forEach(li => {
+           li.onclick = function() {
+            //active
+            liItem.forEach(li => {
+                li.className = "";
+            })
+            li.className = "active";
+
+            //Filter
+            const value = li.textContent;
+            imgItem.forEach(img => {
+                img.style.display = 'none';
+                if (img.getAttribute('data-filter') == value.toLowerCase() || value == "All Menu") {
+                    img.style.display = 'block';
+                }
+            })
+           }
+        });
+    </script>
+</body>
+</html>
